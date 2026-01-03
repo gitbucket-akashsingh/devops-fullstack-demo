@@ -1,0 +1,18 @@
+# version: "3.9"
+
+services:
+  backend:
+    image: devops-backend:1.0
+    container_name: backend
+    ports:
+      - "8080:8080"
+
+  frontend:
+    image: devops-frontend:1.0
+    container_name: frontend
+    ports:
+      - "3000:80"
+    environment:
+      - REACT_APP_BACKEND_URL=http://backend:8080
+    depends_on:
+      - backend
